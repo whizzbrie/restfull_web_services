@@ -7,7 +7,7 @@ node {
 
 
     stage('Package jar file with Maven') {
-         dir('restful-web-services/services') {
+         dir('services') {
             withMaven(
                 // Maven installation declared in the Jenkins "Global Tool Configuration"
                 maven: 'M3') {
@@ -18,7 +18,7 @@ node {
     }
 
     stage('Build image with Docker') {
-        dir('restful-web-services/services') {
+        dir('services') {
             app = docker.build("restful-web-services:${env.BUILD_NUMBER}")
         }
     }
@@ -31,7 +31,7 @@ node {
     }
 
     stage("Deploy to UAT?") {
-        dir('restful-web-services/services/kubernetes') {
+        dir('services/kubernetes') {
             def namespace = input(
                 id: 'namespace', message: 'Deploy to UAT?', parameters: [
                 [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
@@ -43,7 +43,7 @@ node {
     }
 
     stage("Verify UAT") {
-        dir('restful-web-services/services/kubernetes') {
+        dir('services/kubernetes') {
             def namespace = "uat"
             def service = "restful-web-services"
             def serviceIP = "";       
@@ -66,7 +66,7 @@ node {
     }
 
     stage("Deploy to Production?") {
-        dir('restful-web-services/services/kubernetes') {
+        dir('services/kubernetes') {
             def namespace = input(
                 id: 'namespace', message: 'Deploy to Production?', parameters: [
                 [$class: 'TextParameterDefinition', defaultValue: 'prod', description: 'Environment', name: 'env']

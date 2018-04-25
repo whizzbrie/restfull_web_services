@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: restful-web-services
-        image: group1registry.azurecr.io/services/restful-web-services:XX_IMAGETAG_XX
+        image: group1registry.azurecr.io/restful-web-services:XX_IMAGETAG_XX
         ports:
         - containerPort: 8080
       imagePullSecrets:

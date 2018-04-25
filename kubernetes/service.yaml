@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: restful-web-services
+  namespace: XX_NAMESPACE_XX
+spec:
+  selector:
+    app: restful-web-services
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080

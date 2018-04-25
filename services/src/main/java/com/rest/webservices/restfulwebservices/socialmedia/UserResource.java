@@ -36,7 +36,7 @@ public class UserResource {
         return ResponseEntity.created(location).build();
     }
     
-    @PostMapping("/health")
+    @GetMapping("/health")
     public String health() {
         System.out.println("Health check");  
         return "OK";

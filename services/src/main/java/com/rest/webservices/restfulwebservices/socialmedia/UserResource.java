@@ -35,4 +35,10 @@ public class UserResource {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
+    
+    @PostMapping("/health")
+    public String health() {
+        System.out.println("Health check");  
+        return "OK";
+    }
 }
